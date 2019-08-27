@@ -8,5 +8,11 @@
     "b": {
       "c": "a.b.c {{fromList}} - english"
     }
+  },
+  "nested": {
+    "people": "{peopleCount, plural, =1 {person} other {people}}",
+    "moreNesting": {
+      "projects": "{projectCount, plural, =1 {project} other {projects}}"
+    }
   }
 }

@@ -5,7 +5,7 @@ import { getValue, isString } from './helpers';
 export const TRANSLOCO_TRANSPILER = new InjectionToken('TRANSLOCO_TRANSPILER');
 
 export interface TranslocoTranspiler {
-  transpile(value: string, params: HashMap, translation: HashMap): string;
+  transpile(value: string, params: HashMap, translation: HashMap): string | Translation;
 }
 
 export class DefaultTranspiler implements TranslocoTranspiler {

@@ -189,7 +189,7 @@ export class TranslocoService {
    *  transpile('Hello {{ value }}', { value: 'World' })
    *  transpile('Hello {{ value }}', { value: 'World' }, 'es')
    */
-  transpile(value: string, params: HashMap = {}, lang = this.getActiveLang()): string {
+  transpile(value: string, params: HashMap = {}, lang = this.getActiveLang()): string | Translation {
     const translation = this.translations.get(lang);
     return this.parser.transpile(value, params, translation);
   }
