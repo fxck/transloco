@@ -178,7 +178,11 @@ export class TranslocoService {
    * selectTranslate('hello').subscribe(value => {})
    * selectTranslate('hello').subscribe(value => {}, 'es')
    */
-  selectTranslate<T = string | Translation | string[]>(key: string, params?: HashMap, lang?: string): Observable<T> {
+  selectTranslate<T = string | Translation | string[]>(
+    key: string,
+    params?: HashMap<any>,
+    lang?: string
+  ): Observable<T> {
     return this.load(lang || this.getActiveLang()).pipe(map(() => this.translate(key, params, lang)));
   }
 

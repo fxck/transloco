@@ -15,13 +15,12 @@ export class TranspilersComponent {
     setTimeout(() => {
       this._translocoService
         .selectTranslate('mf.nested', {
-          peopleCount: '1',
-          projectCount: '1'
+          people: { count: '1' },
+          'moreNesting.projects': { count: '1' }
         })
         .subscribe(console.log);
-    }, 100);
+    }, 1000);
   }
-
   changeParam() {
     this.dynamic = this.dynamic === '🦄' ? '🦄🦄🦄' : '🦄';
   }

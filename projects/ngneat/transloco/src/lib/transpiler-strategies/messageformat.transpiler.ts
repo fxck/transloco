@@ -2,7 +2,7 @@ import { TranslocoTranspiler, DefaultTranspiler } from '../transloco.transpiler'
 import { HashMap, Translation } from '../types';
 
 import * as MessageFormat from 'messageformat';
-import { isString, isObject } from '../helpers';
+import { isObject, set, getValue } from '../helpers';
 
 const iterate = (obj: Object, cb: Function) => {
   Object.keys(obj).forEach(key => {
@@ -26,16 +26,20 @@ export class MessageFormatTranspiler implements TranslocoTranspiler {
       return value;
     }
 
-    const transpiled = this.defaultTranspiler.transpile(value, params, translation);
-
     if (isObject(value)) {
-      const transpiledObject = iterate(value, (a: string) => {
-        const message = this.messageFormat.compile(a);
-        return message(params);
-      });
+      if (params) {
+        Object.keys(params).forEach(p => {
+          const v = getValue(value as Object, p);
+          const transpiled = this.defaultTranspiler.transpile(v, params, translation);
+          const message = this.messageFormat.compile(transpiled);
+          set(value, p, message(params[p]));
+        });
+      }
 
-      return transpiledObject;
+      return value;
     } else {
+      const transpiled = this.defaultTranspiler.transpile(value, params, translation);
+
       const message = this.messageFormat.compile(transpiled);
       return message(params);
     }

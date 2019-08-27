@@ -10,9 +10,9 @@
     }
   },
   "nested": {
-    "people": "{peopleCount, plural, =1 {person} other {people}}",
+    "people": "{count, plural, =1 {person} other {people}}",
     "moreNesting": {
-      "projects": "{projectCount, plural, =1 {project} other {projects}}"
+      "projects": "{count, plural, =1 {project} other {projects}}"
     }
   }
 }
